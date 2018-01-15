@@ -120,9 +120,9 @@ bindsym $mod+Shift+7 move container to workspace $workspace7
 bindsym $mod+Shift+8 move container to workspace $workspace8
 
 # open specific windows on workspace (xprop)
-assign [class="Eclipse"] $workspace1
+assign [class="jetbrains-idea-ce"] $workspace1
 assign [class="Firefox"] $workspace2
-assign [class="Nautilus"] $workspace4
+assign [class="Thunar"] $workspace4
 assign [class="Spotify"] $workspace5
 assign [class="Slack"] $workspace6
 for_window [class="Spotify"] move to workspace $workspace5
@@ -144,7 +144,7 @@ bindsym $mod+Shift+r restart
 # lock i3
 bindsym $mod+Shift+x exec ~/.i3/lock.sh
 # exit i3 (logs you out of your X session)
-bindsym $mod+Shift+e exit
+bindsym $mod+Shift+e exec shutdown now
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
@@ -227,9 +227,12 @@ bar {
 
 # Commands executed on startup
 exec --no-startup-id nm-applet
-exec_always --no-startup-id feh --bg-scale ~/Bilder/wallpaper2.jpg
+exec_always --no-startup-id feh --bg-scale ~/Pictures/wallpaper2.jpg
 exec compton -f
 exec firefox
-exec nautilus
+exec thunar
 exec spotify
-exec slack
+
+
+# Remove title bars
+new_window 1pixel
