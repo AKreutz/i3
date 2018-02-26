@@ -10,6 +10,7 @@
 # Please see http://i3wm.org/docs/userguide.html for a complete reference!
 
 set $mod Mod4
+# set $mod mod3
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below. ISO 10646 = Unicode
@@ -127,11 +128,13 @@ assign [class="Spotify"] $workspace5
 assign [class="Slack"] $workspace6
 for_window [class="Spotify"] move to workspace $workspace5
 
+for_window [ title="^pdfpc - present" ] border none floating enable
+
 
 # setup second monitor on VGA1 (auto detect resolution)
-bindsym $mod+p exec xrandr --output VGA1 --auto --left-of eDP1
+bindsym $mod+p exec xrandr --output VGA-1 --auto --right-of eDP-1
 # turn second monitor on VGA1 off
-bindsym $mod+Shift+p exec xrandr --output VGA1 --off
+bindsym $mod+Shift+p exec xrandr --output VGA-1 --off
 
 # move workspace to second monitor
 bindsym $mod+x move workspace to output right
@@ -174,16 +177,20 @@ bindsym $mod+r mode "resize"
 
 
 # Pulse Audio controls
-bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 1 +5% #increase sound volume
-bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 1 -- -5% #decrease sound volume
-bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 1 toggle # mute sound
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +5% #increase sound volume
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -5% #decrease sound volume
+bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle # mute sound
 
 # Screen brightness
-bindsym XF86MonBrightnessUp exec xbacklight -inc 10 # increase screen brightness
-bindsym XF86MonBrightnessDown exec xbacklight -dec 10 # decrease screen brightness
+bindsym XF86MonBrightnessUp exec light -A 10 # increase screen brightness
+bindsym XF86MonBrightnessDown exec light -U 10 # decrease screen brightness
+
 
 # gnome-system-monitor
 bindsym control+mod1+r exec gnome-system-monitor 
+# intellij
+bindcode $mod+87 exec intellij-idea-community
+
 
 # for_window commands
 for_window [class="Sol"] resize shrink width 20 px or 20 ppt
@@ -227,11 +234,12 @@ bar {
 
 # Commands executed on startup
 exec --no-startup-id nm-applet
-exec_always --no-startup-id feh --bg-scale ~/Pictures/wallpaper2.jpg
+exec_always --no-startup-id feh --bg-fill ~/Bilder/wallpaper2.jpg
 exec compton -f
 exec firefox
 exec thunar
-exec spotify
+
+
 
 
 # Remove title bars
