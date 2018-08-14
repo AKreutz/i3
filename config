@@ -234,11 +234,9 @@ bar {
 
 # Commands executed on startup
 exec --no-startup-id nm-applet
-exec_always --no-startup-id feh --bg-fill ~/Bilder/wallpaper2.jpg
+exec_always --no-startup-id feh --bg-fill ~/Pictures/wallpaper2.jpg
 exec compton -f
 exec firefox
-exec thunar
-
 
 
 
